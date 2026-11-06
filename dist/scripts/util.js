@@ -1,0 +1,8 @@
+export const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function safeImage(v){if(!v)return '';if(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(v))return v;try{const u=new URL(v,location.href);return u.protocol==='https:'||u.origin===location.origin?esc(u.href):''}catch{return ''}}
+export function yt(v){try{const u=new URL(v),host=u.hostname.replace(/^www\.|^m\./,'');let id;if(host==='youtu.be')id=u.pathname.slice(1);else if(['youtube.com','youtube-nocookie.com'].includes(host)){id=u.pathname==='/watch'?u.searchParams.get('v'):/^\/(shorts|live|embed)\/([\w-]+)\/?$/.exec(u.pathname)?.[2]}if(!/^[\w-]{11}$/.test(id||''))return null;const t=u.searchParams.get('start')||u.searchParams.get('t')||'0',m=/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?$/.exec(t);const start=m?Number(m[1]||0)*3600+Number(m[2]||0)*60+Number(m[3]||0):0;return {id,start}}catch{return null}}
+export function dates(now=new Date()){const p=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);const val=k=>Number(p.find(x=>x.type===k).value);return [0,1,2].map(i=>new Date(Date.UTC(val('year'),val('month')-1,val('day')+i)).toISOString().slice(0,10))}
+export const pretty=d=>new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(d+'T12:00:00Z'));
+export const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:Number(n)%1?2:0}).format(n);
+export const roles=['Administrador','Programación','Dulcería','Consulta'];
+export const allowed=(r,k)=>r==='Administrador'||r==='Programación'&&['movies','upcoming'].includes(k)||r==='Dulcería'&&k==='candy';
