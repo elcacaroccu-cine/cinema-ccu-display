@@ -1,3 +1,4 @@
+import './screen-fit.js';
 import {data,cloud} from './store.js';
 import {esc,safeImage,dates,pretty,money,yt} from './util.js';
 import { expandScreenings, groupScreenings } from './screenings.js';

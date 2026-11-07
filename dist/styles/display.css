@@ -10,3 +10,37 @@
 
 /* All daily showtimes share one movie poster per room. */
 .showtimes{display:flex;flex-wrap:wrap;gap:.15em .55em}.ticket .showtimes strong{white-space:nowrap}.roomLabel{font-weight:700;margin:.25em 0 .55em}
+
+/* Landscape lobby / smart-TV browsers: fixed three-column composition fitted
+   to available width AND height, without clipping text or moving trailers below. */
+body.tv{overflow:hidden}
+.tv #displaySurface{position:absolute;top:0;left:50%;width:1280px;padding-bottom:8px;transform:translateX(-50%) scale(var(--display-scale,1));transform-origin:top center;font-size:18px}
+.tv header,.tv main,.tv footer{padding-inline:24px}
+.tv header{padding-block:8px;gap:12px}
+.tv .brand img{width:40px;height:40px}
+.tv .brand strong{font-size:24px}
+.tv .institution{display:none}
+.tv .mast{padding:12px 0;display:flex;align-items:end}
+.tv h1{font-size:40px}
+.tv .mastDate{text-align:right}
+.tv .mastDate strong{font-size:22px}
+.tv .grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.8fr) minmax(0,1fr);gap:22px}
+.tv section,.tv section:last-child{grid-column:auto;margin-top:0}
+.tv .sectionHead{margin:8px 0 4px}
+.tv h2{font-size:27px}
+.tv .sub,.tv #days{min-height:32px;margin-bottom:6px}
+.tv .filmTop{grid-template-columns:170px minmax(0,1fr);gap:15px}
+.tv .poster{width:170px;height:255px;max-height:none;object-fit:contain}
+.tv .product{height:190px;max-height:none;object-fit:contain}
+.tv .video{max-width:none;aspect-ratio:16/9}
+.tv .cardTitle{font-size:27px}
+.tv .ticket{margin-top:8px;padding-top:8px}
+.tv .ticket strong,.tv .amount{font-size:30px}
+.tv .ticket b{font-size:23px;padding:5px 9px;margin-top:4px}
+.tv .synopsis,.tv .description{font-size:19px;line-height:1.35;margin:10px 0}
+.tv .awards{font-size:17px;line-height:1.3}
+.tv .controls{margin:8px 0}
+.tv footer{margin-top:10px;padding-block:6px}
+.tv .clock small,.tv .mastDate small,.tv footer>span:nth-child(2){display:block}
+.tv #fullscreen,.tv #admin{font-size:16px}
+@media(max-width:650px){#fullscreen{display:none}}
