@@ -28,3 +28,26 @@ export function expandScreenings(movies) {
     screeningsFor(movie).map(screening => ({ ...movie, ...screening }))
   );
 }
+
+// Numeric room entries from older records must still show the full label.
+export function roomLabel(room) {
+  const label = String(room ?? '').trim().replace(/\s+/g, ' ');
+  const numbered = label.match(/^(?:sala\s*)?(\d+)$/i);
+  return numbered ? 'Sala ' + Number(numbered[1]) : label;
+}
+
+// One poster per movie and room on the selected day, with every showtime.
+export function groupScreenings(movies, date) {
+  return movies.flatMap(movie => {
+    const rooms = new Map();
+    for (const screening of screeningsFor(movie)) {
+      if (screening.date !== date) continue;
+      const room = roomLabel(screening.room);
+      const key = room.toLocaleLowerCase('es');
+      if (!rooms.has(key)) rooms.set(key, { ...movie, date, room, times: [] });
+      const card = rooms.get(key);
+      if (!card.times.includes(screening.time)) card.times.push(screening.time);
+    }
+    return [...rooms.values()].map(card => ({ ...card, times: card.times.sort() }));
+  }).sort((a, b) => a.times[0].localeCompare(b.times[0]));
+}

@@ -64,3 +64,27 @@ test('Storage exhaustion preserves previous catalog', async () => {
   localStorage.setItem = setter;
   assert.deepEqual(await S.data(), previous);
 });
+
+test('One card holds all five daily times, while different rooms and days stay separate', async () => {
+  const { groupScreenings, roomLabel } = await import('../dist/scripts/screenings.js');
+  const date = '2026-11-07';
+  const movie = { id: 'one', title: 'Los colonos', poster: 'poster.jpg', synopsis: 'Sinopsis', screenings:
+    ['20:00', '12:00', '18:00', '14:00', '16:00'].map((time, i) => ({ date, time, room: i % 2 ? 'Sala 1' : '1' })) };
+  let cards = groupScreenings([movie], date);
+  assert.equal(cards.length, 1);
+  assert.deepEqual(cards[0].times, ['12:00', '14:00', '16:00', '18:00', '20:00']);
+  assert.equal(cards[0].room, 'Sala 1');
+  assert.equal(cards[0].poster, movie.poster);
+  assert.equal(cards[0].synopsis, movie.synopsis);
+  const split = { ...movie, screenings: [
+    { date, time: '17:00', room: '1' }, { date, time: '19:00', room: 'Sala 1' },
+    { date, time: '18:00', room: '2' }, { date: '2026-11-08', time: '21:00', room: '1' }
+  ] };
+  cards = groupScreenings([split], date);
+  assert.deepEqual(cards.map(c => [c.room, c.times]), [['Sala 1', ['17:00', '19:00']], ['Sala 2', ['18:00']]]);
+  assert.deepEqual(groupScreenings([split], '2026-11-08')[0].times, ['21:00']);
+  assert.equal(groupScreenings([{ date, time: '15:00', room: '2' }], date)[0].room, 'Sala 2');
+  assert.equal(roomLabel(' sala  1 '), 'Sala 1');
+  assert.equal(roomLabel('Auditorio'), 'Auditorio');
+  assert.equal(groupScreenings([movie, { ...movie, id: 'other' }], date).length, 2);
+});

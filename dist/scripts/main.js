@@ -1,6 +1,6 @@
 import {data,cloud} from './store.js';
 import {esc,safeImage,dates,pretty,money,yt} from './util.js';
-import { expandScreenings } from './screenings.js';
+import { expandScreenings, groupScreenings } from './screenings.js';
 import {admin} from './panel.js';
 const $=s=>document.querySelector(s),days=['Hoy','Mañana','Tercer día'];
 let db={movies:[],candy:[],upcoming:[]},dateList=dates(),day=0,mi=0,ci=0,vi=0,paused=false,manual=0,mt=0,ct=0,vt=0,frame,ready=false,playing=false,pendingEnded=false;
@@ -8,8 +8,8 @@ const empty=s=>'<p class="empty">'+s+'</p>';
 const img=(v,cls)=>'<img class="'+cls+'" alt="" src="'+(safeImage(v)||'assets/placeholder.svg')+'">';
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG'&&!e.target.src.endsWith('placeholder.svg'))e.target.src='assets/placeholder.svg'},true);
 const controls=(k,i,n)=>'<div class="controls"><span class="count">'+String(i+1).padStart(2,'0')+' / '+String(n).padStart(2,'0')+'</span><div>'+[-1,1].map(d=>'<button data-k="'+k+'" data-d="'+d+'" aria-label="'+(d<0?'Anterior':'Siguiente')+' · '+k+'">'+(d<0?'‹':'›')+'</button>').join('')+'</div></div>';
-const films=()=>expandScreenings(db.movies).filter(x=>x.date===dateList[day]).sort((a,b)=>a.time.localeCompare(b.time));
-function movie(){const a=films();mi=Math.min(mi,Math.max(0,a.length-1));const m=a[mi];$('#days').innerHTML=days.map((n,i)=>'<button data-day="'+i+'" aria-pressed="'+(i===day)+'">'+n+'</button>').join('');$('#movie').innerHTML=m?'<div class="filmTop">'+img(m.poster,'poster')+'<div><div class="eyebrow">'+esc(pretty(m.date))+'</div><h3 class="cardTitle">'+esc(m.title)+'</h3><div class="tag">'+esc([m.year,m.rating].filter(Boolean).join(' · '))+'</div><div class="ticket"><strong>'+esc(m.time)+'</strong>'+esc(m.room)+'<br><b>'+(m.free?'ENTRADA LIBRE':money(m.price))+'</b></div></div></div><p class="synopsis">'+esc(m.synopsis)+'</p>'+(m.awards?'<p class="awards">'+esc(m.awards)+'</p>':'')+controls('cartelera',mi,a.length):empty('Sin funciones programadas para este día.');mt=Date.now()+(day?14000:35000)}
+const films=()=>groupScreenings(db.movies,dateList[day]);
+function movie(){const a=films();mi=Math.min(mi,Math.max(0,a.length-1));const m=a[mi];$('#days').innerHTML=days.map((n,i)=>'<button data-day="'+i+'" aria-pressed="'+(i===day)+'">'+n+'</button>').join('');$('#movie').innerHTML=m?'<div class="filmTop">'+img(m.poster,'poster')+'<div><div class="eyebrow">'+esc(pretty(m.date))+'</div><h3 class="cardTitle">'+esc(m.title)+'</h3><div class="tag">'+esc([m.year,m.rating].filter(Boolean).join(' · '))+'</div><div class="ticket"><div class="showtimes" aria-label="Horarios">'+m.times.map(time=>'<strong>'+esc(time)+'</strong>').join('')+'</div><div class="roomLabel">'+esc(m.room)+'</div><b>'+(m.free?'ENTRADA LIBRE':money(m.price))+'</b></div></div></div><p class="synopsis">'+esc(m.synopsis)+'</p>'+(m.awards?'<p class="awards">'+esc(m.awards)+'</p>':'')+controls('cartelera',mi,a.length):empty('Sin funciones programadas para este día.');mt=Date.now()+(day?14000:35000)}
 function stepMovie(d){let j=mi+d;if(j>=0&&j<films().length)mi=j;else{day=(day+d+3)%3;mi=d===1?0:Math.max(0,films().length-1)}movie()}
 const products=()=>db.candy.filter(x=>x.active);
 function candy(){const a=products();ci=(ci+a.length)%(a.length||1);const c=a[ci];$('#candy').innerHTML=c?img(c.poster,'product')+'<div class="eyebrow">'+esc(c.category)+'</div><h3 class="cardTitle">'+esc(c.title)+'</h3><div class="amount">'+money(c.price)+'</div><p class="description">'+esc(c.description)+'</p>'+controls('dulcería',ci,a.length):empty('Sin productos disponibles.');ct=Date.now()+8500}

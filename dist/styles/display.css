@@ -7,3 +7,6 @@
 .posterUpload{display:grid;gap:12px}
 .posterPreview{width:110px;max-height:165px;object-fit:contain}
 .posterUpload small{color:#cbc5bc}
+
+/* All daily showtimes share one movie poster per room. */
+.showtimes{display:flex;flex-wrap:wrap;gap:.15em .55em}.ticket .showtimes strong{white-space:nowrap}.roomLabel{font-weight:700;margin:.25em 0 .55em}
