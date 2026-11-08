@@ -1,0 +1,523 @@
+{
+  "movies": [
+    {
+      "title": "El imaginario",
+      "year": "2023",
+      "rating": "A",
+      "price": 0,
+      "free": true,
+      "synopsis": "Amanda y Rudger, su amigo imaginario, viven emocionantes aventuras juntos. Pero un día Rudger se queda solo y debe enfrentar una amenaza misteriosa.",
+      "awards": "2024: Festival de Annecy: Nominada a Cristal al Mejor largometraje.\n",
+      "tmdb": "913001",
+      "trailer": "https://youtu.be/YsLBTi2GPwA",
+      "poster": "https://image.tmdb.org/t/p/w780/mZlUUidADxGIJx0J7jevy1RvO1c.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-07",
+          "time": "14:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-07",
+      "time": "14:00",
+      "room": "2",
+      "id": "dfa32f4d-5819-40ff-8e74-97e50f3752fb"
+    },
+    {
+      "title": "Las aventuras de Stinky Dog",
+      "year": "2020",
+      "rating": "A",
+      "price": 0,
+      "free": true,
+      "synopsis": "Stinky Dog y Flatycat recorrerán París en una maravillosa aventura. Sin importarle los líos que va a armar, ¡Stinky Dog siempre sale adelante! Tan a menudo y tan bien, que los otros perros empiezan a pensar que hay gato encerrado",
+      "awards": "",
+      "tmdb": "700066",
+      "trailer": "",
+      "poster": "https://image.tmdb.org/t/p/w780/bNDTxszz7mLAyNXUtTkjfMUsOGO.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-08",
+          "time": "14:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-08",
+      "time": "14:00",
+      "room": "2",
+      "id": "d9ffc293-05ef-4aa1-a1b1-c3889cc0b81b"
+    },
+    {
+      "title": "Los colonos",
+      "year": "2023",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Chile, principios del siglo XX. José Menéndez, un rico terrateniente, contrata a tres jinetes para que delimiten el perímetro de su extensa propiedad y abran una ruta hacia el océano Atlántico a través de la vasta Patagonia.",
+      "awards": "",
+      "tmdb": "989589",
+      "trailer": "https://youtu.be/9KEDnfuXOVA",
+      "poster": "https://image.tmdb.org/t/p/w780/qT4pDQnsPRxt5P4DZkIkjSYVZrs.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-09",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-09",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-09",
+      "time": "17:00",
+      "room": "2",
+      "id": "3d3e80c1-b521-49ec-8da4-78bdeb759f26"
+    },
+    {
+      "title": "Doña Flor y sus dos maridos",
+      "year": "1976",
+      "rating": "",
+      "price": 0,
+      "free": true,
+      "synopsis": "Pueblito brasileño Bahia, en los años veinte. La bella Floripides Guimaraes, más conocida como Doña Flor, está casada con el pícaro y mujeriego Valdomiro Santos Guimaraes, alias Vadinho. Si bien su marido es un irresponsable  juerguista, Doña Flor se siente compensada con la ardiente vida sexual que le da. Cuando Vadinho muera de un infarto en pleno carnaval, Doña Flor sentirá que su vida (sexual) ha quedado vacía. La solitaria viuda acepta casarse con el respetable y pulcro Dr. Teodoro Madureira, un hombre metódico y responsable. Pero, pese a ser un ciudadano modelo, el nuevo esposo no logra cubrir el vacío pasional dejado por el ardiente Vadinho. Doña Flor reconoce que su nuevo marido nunca le podrá satisfacer en el campo del deseo como su primer marido. Pero, de manera sobrenatural, Doña Flor verá la oportunidad de satisfacer su nostalgia sexual: Vadinho ha regresado al mundo de los vivos, solo visible a los ojos de ella... y dispuesto a saciar los deseos de la apasionada viuda.",
+      "awards": "",
+      "tmdb": "42234",
+      "trailer": "https://youtu.be/GGDMXJgl8I0",
+      "poster": "https://image.tmdb.org/t/p/w780/sbL5in9so3fMtpDvqXdhbb1ydMe.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-10",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-10",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-10",
+      "time": "17:00",
+      "room": "2",
+      "id": "ba9b9d5d-4e8a-4451-850e-206676a86723"
+    },
+    {
+      "title": "Totally F***ed Up",
+      "year": "1994",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Narra la historia de un grupo de jóvenes homosexuales, gays y lesbianas, de Los Angeles. Sus padres les han echado de casa, están sin blanca y sus amantes les engañan. Están \"totalmente jodidos\", tanto que como solución a sus problemas algunos se llega a plantear el suicidio...",
+      "awards": "",
+      "tmdb": "33560",
+      "trailer": "https://youtu.be/Wp4wmK5U1XA",
+      "poster": "https://image.tmdb.org/t/p/w780/qZBtSTEhlXy0aNTZ40umWLpJr2T.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-11",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-11",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-11",
+      "time": "17:00",
+      "room": "2",
+      "id": "27a70ad2-9186-4b88-a728-f23ca904ba9d"
+    },
+    {
+      "title": "Trong lòng đất",
+      "year": "2024",
+      "rating": "",
+      "price": 0,
+      "free": true,
+      "synopsis": "En las profundidades de las minas de carbón subterráneas, donde el peligro aguarda y la oscuridad prevalece, Nam y Viêt, ambos jóvenes mineros, acarician momentos fugaces, sabiendo que uno de ellos pronto partirá hacia una nueva vida al otro lado del mar. Pero la partida no puede producirse, ya que yace en algún lugar profundo de la tierra, en el lejano bosque, el padre de Nam, un soldado cuyos restos quieren encontrar. Juntos, siguiendo los misterios de los recuerdos y los sueños, desandan el camino hacia el pasado.",
+      "awards": "2024: Festival de Cannes: Nominada a Un Certain Regard: Mejor película.\n2025: Asian Film Awards: 3 nominaciones\n",
+      "tmdb": "846586",
+      "trailer": "https://youtu.be/gAnrjuST6wo",
+      "poster": "https://image.tmdb.org/t/p/w780/axtvB6qoORMZQ2qPZdaFcBOM8g3.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-12",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-12",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-12",
+      "time": "17:00",
+      "room": "2",
+      "id": "06ecb2df-39ee-4f9b-90e0-d6ac2c5379c0"
+    },
+    {
+      "title": "April",
+      "year": "2024",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Tras la muerte de un recién nacido durante el parto, la moral y la profesionalidad de una ginecóloga, Nina, se ven sometidas a escrutinio entre rumores de que practica abortos ilegales a quienes lo necesitan. ",
+      "awards": "2024: Festival de Venecia: Premio Especial del Jurado. 2 nominaciones\n2024: Festival de San Sebastián: Zabaltegi-Tabakalera.\n2024: Premios del Cine Europeo (EFA): Nominada a Premio European University Film.\n",
+      "tmdb": "",
+      "trailer": "https://www.youtube.com/watch?v=ay6_wHaNFHc",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNWRlNmYwMjgtNzE2YS00ZTRkLWJjYWMtZGNiYjBkYWIzMmZhXkEyXkFqcGc@._V1_.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-13",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-13",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-13",
+      "time": "17:00",
+      "room": "2",
+      "id": "cab2ffde-43ab-4010-962d-cc65754d16f5"
+    },
+    {
+      "title": "Rotting in the Sun",
+      "year": "2023",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "La celebridad de las redes sociales, Jordan Firstman, inicia una búsqueda para encontrar al cineasta Sebastián Silva, quien desapareció en la Ciudad de México. Jordan sospecha que la señora de la limpieza del edificio de Sebastian puede estar involucrada en su desaparición.",
+      "awards": "2023: Premios Independent Spirit Awards: 3 nominaciones\n",
+      "tmdb": "1058696",
+      "trailer": "https://youtu.be/d1PIdTBGl0A",
+      "poster": "https://image.tmdb.org/t/p/w780/n2UhXsV5W2IlVdCRSxtK7hNa83s.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-14",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-14",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-14",
+      "time": "17:00",
+      "room": "2",
+      "id": "a78f06a6-9ea9-4add-874c-2f0628b8c228"
+    },
+    {
+      "title": "Monstruo",
+      "year": "2023",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Cuando su pequeño hijo Minato comienza a comportarse de manera extraña, su madre siente que algo anda mal. Al descubrir que un maestro es el responsable, irrumpe en la escuela exigiendo saber qué está pasando. Pero a medida que la historia se desarrolla a través de los ojos de la madre, la maestra y el niño, la verdad emerge gradualmente.",
+      "awards": "2023: Festival de Cannes: Mejor guión. 2 nominaciones\n2023: Premios British Independent Film Awards (BIFA): Nominada a Mejor película internacional independiente.\n2024: Japan Academy Awards: 3 premios. 11 nominaciones\n2024: Asian Film Awards: Mejor dirección.\n",
+      "tmdb": "1050035",
+      "trailer": "https://youtu.be/Y8_KfdcIMBY",
+      "poster": "https://image.tmdb.org/t/p/w780/8frC5TllwK0jnQCqgZDE8xzsT5b.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-15",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-15",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-15",
+      "time": "17:00",
+      "room": "2",
+      "id": "425f5619-000c-4a34-a19d-dfac8f402aa9"
+    },
+    {
+      "title": "El compadre Mendoza",
+      "year": "1934",
+      "rating": "",
+      "price": 0,
+      "free": true,
+      "synopsis": "En plena Revolución Mexicana, el terrateniente Mendoza se las ingenia para quedar bien tanto con el gobierno como con el grupo revolucionario. Para el primero, es partidario de Huerta. Para el segundo, partidario de Zapata. Según la preferencia política de quien lo visite en su hacienda, manda poner los retratos de Huerta o de Zapata, y organiza una fiesta en honor de sus visitantes. No obstante, el tiempo pasa y la situación se vuelve insostenible. ¿Por quién tomará partido?",
+      "awards": "",
+      "tmdb": "114626",
+      "trailer": "",
+      "poster": "https://image.tmdb.org/t/p/w780/b56SuoyQWualtXkHmrVN6HROZiD.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-17",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-17",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-17",
+      "time": "17:00",
+      "room": "2",
+      "id": "12efa142-cc3c-49c0-b504-cdeecf6a45d6"
+    },
+    {
+      "title": "El prisionero 13",
+      "year": "1933",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Cansada de los malos tratos que le da su marido, un arbitrario coronel alcohólico, su esposa lo abandona y se lleva a su niño. Años después, por azares del destino, el militar está a punto de fusilar a su propio hijo, al que no conoce.",
+      "awards": "",
+      "tmdb": "145048",
+      "trailer": "https://www.youtube.com/watch?v=jwCyN-WwtoA",
+      "poster": "https://image.tmdb.org/t/p/w780/oAvGVXuEk12WFv8mFlcKSpXGJLV.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-18",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-18",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-18",
+      "time": "17:00",
+      "room": "2",
+      "id": "cedd0281-4e42-4dc0-922c-169dbe3159b3"
+    },
+    {
+      "title": "¡Vámonos con Pancho Villa!",
+      "year": "1936",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Los Leones de San Pablo, seis valientes campesinos, decidieron unirse al ejército de Pancho Villa para ayudar a poner fin al sufrimiento en su comunidad durante la Revolución Mexicana de 1910. Juntos, soportarán las tragedias y dificultades de una guerra civil.",
+      "awards": "",
+      "tmdb": "106266",
+      "trailer": "https://www.youtube.com/watch?v=gknBeTzlfow",
+      "poster": "https://image.tmdb.org/t/p/w780/dRGfPAvdAOdOvYCr6Rqw4V91073.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-19",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-19",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-19",
+      "time": "17:00",
+      "room": "2",
+      "id": "b593217e-91f4-42cb-a0ee-cda164d8aa48"
+    },
+    {
+      "title": "La soldadera",
+      "year": "1967",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Mientras esperan el tren que los llevará a su luna de miel, los recién casados Juan y Lázara son separados por un comandante del ejército federal que anda reclutando hombres para combatir a los revolucionarios. Desplazándose junto con la tropa, Lázara sigue a Juan hasta que éste muere en un combate contra los villistas. A partir de ese momento, el destino de la joven estará en manos de quien resulte vencedor en la contienda, un destino incierto para quien sólo desea una casa dónde vivir.",
+      "awards": "",
+      "tmdb": "365704",
+      "trailer": "https://www.youtube.com/watch?v=ScmnHmJpsnA",
+      "poster": "https://image.tmdb.org/t/p/w780/mROAe0gysRHWnL6LLTJYnYAJDFQ.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-20",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-20",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-20",
+      "time": "17:00",
+      "room": "2",
+      "id": "98e93771-0c3b-4ca7-88da-9455a152e74a"
+    },
+    {
+      "title": "Enamorada",
+      "year": "1946",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Durante la Revolución Mexicana, un general se enamora de la hija de un aristócrata en la ciudad que está ocupando.",
+      "awards": "1946: Premios Ariel: Mejor Película (Premio Ariel de Oro)\n",
+      "tmdb": "115301",
+      "trailer": "https://www.youtube.com/watch?v=7SPG0-xiSI8",
+      "poster": "https://image.tmdb.org/t/p/w780/z5sBg8hIvXz1zi6aPsP1Jbyetm4.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-21",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-21",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-21",
+      "time": "17:00",
+      "room": "2",
+      "id": "8339f47d-84ee-4f2e-96b8-f4d828ec9037"
+    },
+    {
+      "title": "'Ora sí ¡tenemos que ganar!",
+      "year": "1981",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "Los abusos de la autoridad y del empresario de un pueblo minero hacen que los obreros, influidos por la lectura de los artículos de Ricardo Flores Magón en el periódico Regeneración, se organicen clandestinamente y se amotinen contra el estadounidense, dueño de la mina, que se niega a rescatar a un grupo de obreros atrapados por un derrumbe. ",
+      "awards": "1981: Premios Ariel: 4 premios incluyendo Mejor película y director. 9 nominaciones\n",
+      "tmdb": "304371",
+      "trailer": "",
+      "poster": "https://image.tmdb.org/t/p/w780/lgM3tOovT4pSGuXcX4AYhjvy20B.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-22",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-22",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-22",
+      "time": "17:00",
+      "room": "2",
+      "id": "9d898fdb-882a-4c26-925f-100c82a9c458"
+    },
+    {
+      "title": "Reed, México Insurgente",
+      "year": "1973",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "En 1913, el periodista norteamericano John Reed cruza la frontera mexicana y viaja al cuartel del general villista Urbina en Durango. A lo largo de un año y medio, Reed consigue ganarse la confianza de los revolucionarios y termina involucrándose activamente en la contienda.Película biográfica que se centra en la vida, aventuras y acción política del periodista norteamericano John Reed, a partir de su propio libro de recuerdos México insurgente",
+      "awards": "1972: Premios Ariel: 4 Nominaciones\n",
+      "tmdb": "119807",
+      "trailer": "https://www.youtube.com/watch?v=sFn4juvV_qs",
+      "poster": "https://image.tmdb.org/t/p/w780/aSHCVDiUy1NA5rDcmVicji2C1TP.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-23",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-23",
+          "time": "19:30",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-23",
+      "time": "17:00",
+      "room": "2",
+      "id": "10e35df7-0ca9-46f8-a6a8-28ca73d35d26"
+    },
+    {
+      "title": "La sombra del Caudillo",
+      "year": "1960",
+      "rating": "B15",
+      "price": 0,
+      "free": true,
+      "synopsis": "En los años veinte, el general Aguirre, Ministro de Guerra, se hace amante de la joven Rosario y retira su candidatura a la presidencia debido a que el caudillo en el poder apoya al general Jiménez, Ministro de Gobernación. Sin embargo, Olivier, líder del Partido Radical Progresista, mantiene su apoyo a Aguirre, pero no puede retractarse de su propia orden para que el gobernador Ibañez lance la candidatura de Jiménez, lo que causa un altercado. Como amenaza, el diputado Askaná, amigo de Aguirre, es secuestrado. La prostituta Mora se entera y avisa a Aguirre, que hace firmar una confesión a uno de los plagiarios y la lleva al caudillo, pero acaba por distanciarse de él, pues no cree que Aguirre sea sincero en su retiro de la candidatura. En efecto, Aguirre renuncia a su ministerio y lanza de nuevo su candidatura. La represión no se hace esperar.",
+      "awards": "",
+      "tmdb": "120298",
+      "trailer": "https://youtu.be/J2cPP8KPeiw",
+      "poster": "https://image.tmdb.org/t/p/w780/8UAfdekhZ0HxkxCuCtal05H7RSa.jpg",
+      "screenings": [
+        {
+          "date": "2026-11-24",
+          "time": "17:00",
+          "room": "2"
+        },
+        {
+          "date": "2026-11-24",
+          "time": "19:00",
+          "room": "2"
+        }
+      ],
+      "date": "2026-11-24",
+      "time": "17:00",
+      "room": "2",
+      "id": "80556df6-81af-4ec8-9f0e-7a368ea3e7ab"
+    }
+  ],
+  "candy": [
+    {
+      "title": "Palomitas clásicas",
+      "category": "Palomitas",
+      "price": 25,
+      "description": "Maíz recién hecho, con un toque de sal y mantequilla.",
+      "poster": "https://thumbs.dreamstime.com/b/palomitas-anchas-13503390.jpg",
+      "active": true,
+      "id": "6a6ccf32-c0f9-459e-b685-f579d1c23e22"
+    },
+    {
+      "title": "Coca Cola 600 ml",
+      "category": "Bebidas frías",
+      "price": 25,
+      "description": "Refresco frío para acompañar la función.",
+      "poster": "https://thumbs.dreamstime.com/b/botella-del-pl%C3%A1stico-de-coca-cola-64145055.jpg",
+      "active": true,
+      "id": "d919f0f0-f690-4042-b234-95902bb77427"
+    },
+    {
+      "title": "Ciel 600",
+      "category": "Bebidas frías",
+      "price": 15,
+      "description": "Botella individual de agua purificada.",
+      "poster": "https://resources.coca-colaentuhogar.com/media/catalog/product/7/5/750105530790---ciel-600ml-pet_4.jpg",
+      "active": true,
+      "id": "f1a508f2-76f5-47ab-a8c1-b5459802d66a"
+    }
+  ],
+  "upcoming": [
+    {
+      "title": "Fatherland",
+      "year": "2026",
+      "date": "2026-11-05",
+      "label": "PRÓXIMAMENTE",
+      "tmdb": "1802918",
+      "poster": "https://image.tmdb.org/t/p/w600_and_h900_face/7VjwmvDG5mksJBXMcmK6PudqH88.jpg",
+      "trailer": "https://www.youtube.com/watch?v=OULoDGWK5Yc",
+      "active": true,
+      "id": "d418eea0-00a9-4f1e-b564-b2e663bef733"
+    },
+    {
+      "title": "LA PEQUEÑA HERMANA",
+      "year": "2025",
+      "date": "2026-11-12",
+      "label": "PRÓXIMAMENTE",
+      "tmdb": "",
+      "poster": "https://image.tmdb.org/t/p/w600_and_h900_face/pae1NQnQW2fiVB4Aw3XwXJozd5u.jpg",
+      "trailer": "https://www.youtube.com/watch?v=plPryeiPfaI",
+      "active": true,
+      "id": "94ecc3a1-a82b-4d34-b5e6-f2d26fab8233"
+    }
+  ]
+}

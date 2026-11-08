@@ -44,3 +44,15 @@ body.tv{overflow:hidden}
 .tv .clock small,.tv .mastDate small,.tv footer>span:nth-child(2){display:block}
 .tv #fullscreen,.tv #admin{font-size:16px}
 @media(max-width:650px){#fullscreen{display:none}}
+
+/* Light lobby palette: reduce the prominence of reflections while retaining contrast. */
+html{color-scheme:light}body{background:#f2ebdd;color:#202020}
+#displaySurface button{background:#e7ddce;color:#202020;border-color:#85796b}
+#displaySurface button:hover,#displaySurface button[aria-pressed=true]{background:#b8202a;color:white}
+header,footer{border-color:#b1a594}section{border-color:#202020}
+.brand small,.clock small,.institution,.mastDate small,.sub,.count,footer{color:#51483e}
+.synopsis,.description{color:#202020}.awards,.videoNote,.empty{color:#51483e}
+.awards{border-color:#b8202a}.eyebrow,.amount,h1 span,.sectionHead>span{color:#b8202a}
+.kicker i,.ticket b{background:#b8202a}.ticket b{color:white}
+.poster,.product,.video{background:#e7ddce}.ticket,.tag{border-color:#85796b}
+#panel{color-scheme:dark}
