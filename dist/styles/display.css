@@ -72,3 +72,32 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 .tv .mast{align-items:center}.tv #cycleBanner img{height:160px}
 @media(max-width:650px){#cycleBanner{margin:16px 0}#cycleBanner img{height:auto;max-height:220px}#socialQr a,#socialQr>div{justify-content:center}}
 [hidden]{display:none!important}
+
+/* Stable 1280 x 760 lobby canvas. Content cannot change its scale. */
+.tv #displaySurface{height:760px;display:flex;flex-direction:column;padding-bottom:0}
+.tv header{height:64px;flex:0 0 64px}
+.tv .clock{flex-shrink:0;min-width:135px}.tv .clock b{font-size:30px;line-height:1.1}.tv .clock small{font-size:15px}
+.tv main{flex:1;min-height:0;display:flex;flex-direction:column}
+.tv .mast{height:88px;flex:0 0 88px;padding:8px 0;gap:16px}
+.tv .mast>div:first-child{flex:0 0 220px}.tv .mastDate{flex:0 0 220px}
+.tv #cycleBanner{height:72px;flex:1;margin:0;overflow:hidden}
+.tv #cycleBanner img{width:100%;height:72px;object-fit:contain}
+.tv .grid{flex:1;min-height:0;overflow:hidden}
+.tv section{height:100%;overflow:hidden;display:flex;flex-direction:column}
+.tv .sectionHead{flex-shrink:0}.tv .sub,.tv #days{flex-shrink:0}
+.tv #movie,.tv #candy,.tv #trailer{min-height:0}
+.tv .filmTop{height:264px;grid-template-columns:160px minmax(0,1fr);align-items:center}
+.tv .poster{width:160px;height:240px}.tv .filmTop>div{max-height:264px;overflow:auto;scrollbar-width:none}
+.tv .cardTitle{font-size:25px;line-height:1.12;max-height:84px;overflow:auto;scrollbar-width:none}
+.tv .synopsis{height:82px;max-height:82px;overflow:auto;scrollbar-width:none;font-size:19px;line-height:1.4;margin:8px 0}
+.tv .awards{max-height:44px;overflow:auto;scrollbar-width:none;font-size:16px;line-height:1.35}
+.tv .description{max-height:54px;overflow:auto;scrollbar-width:none}
+.tv .controls{height:38px;margin:6px 0;flex-shrink:0}
+.tv #socialQr{margin-top:auto;padding-top:6px;flex:0 0 124px}
+.tv #socialQr img{width:118px;height:118px}.tv #socialQr span{font-size:18px}
+.tv footer{height:36px;flex:0 0 36px;margin-top:8px;padding-block:4px;font-size:10px}
+.tv .ticket strong{font-size:28px}
+@media(max-width:650px){#cycleBanner{height:72px;margin:8px 0}#cycleBanner img{height:72px;max-height:72px;object-fit:contain}}
+.tv #cycleBanner{max-width:720px}
+.tv #trailer .video{height:150px;aspect-ratio:auto}.tv #trailer .cardTitle{max-height:56px}
+.tv #trailer .description{max-height:27px;margin:6px 0}.tv #trailer .videoNote{max-height:24px;font-size:16px;overflow:hidden}

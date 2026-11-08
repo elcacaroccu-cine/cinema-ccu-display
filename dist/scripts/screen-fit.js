@@ -9,7 +9,7 @@ function fit() {
   const television = width >= 700 && width > height;
   document.body.classList.toggle('tv', television);
   if (!television) { surface.style.removeProperty('--display-scale'); return; }
-  const scale = Math.min(width / 1280, height / Math.max(surface.scrollHeight, surface.offsetHeight));
+  const scale = Math.min(width / 1280, height / 760);
   surface.style.setProperty('--display-scale', String(scale));
 }
 function scheduleFit() {
