@@ -56,3 +56,5 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 .kicker i,.ticket b{background:#b8202a}.ticket b{color:white}
 .poster,.product,.video{background:#e7ddce}.ticket,.tag{border-color:#85796b}
 #panel{color-scheme:dark}
+
+#panel a{color:#ffcf8c;text-decoration:underline}

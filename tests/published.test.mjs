@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 test('lobby fetches the published catalog without using browser drafts',async()=>{
  let options;
  const db=JSON.parse(await readFile(new URL('../dist/data/cartelera.json',import.meta.url)));
- const result=await publishedData(async(url,opts)=>{options=opts;assert.match(url.pathname,/data\/cartelera.json$/);return {ok:true,json:async()=>db}});
+ const result=await publishedData(async(url,opts)=>{options=opts;assert.match(String(url),/api\/state$/);return {ok:true,json:async()=>({data:db})}});
  assert.equal(options.cache,'no-store');assert.equal(result.movies.length,17);
  assert.equal(result.movies.reduce((n,m)=>n+m.screenings.length,0),32);
 });

@@ -1,0 +1,3 @@
+CREATE TABLE catalog (id INTEGER PRIMARY KEY, payload TEXT NOT NULL, revision INTEGER NOT NULL DEFAULT 1);
+--> statement-breakpoint
+CREATE TABLE members (email TEXT PRIMARY KEY, role TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1);
