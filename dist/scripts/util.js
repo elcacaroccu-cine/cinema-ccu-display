@@ -5,4 +5,4 @@ export function dates(now=new Date()){const p=new Intl.DateTimeFormat('en-CA',{t
 export const pretty=d=>new Intl.DateTimeFormat('es-MX',{day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(d+'T12:00:00Z'));
 export const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:Number(n)%1?2:0}).format(n);
 export const roles=['Administrador','Programación','Dulcería','Consulta'];
-export const allowed=(r,k)=>r==='Administrador'||r==='Programación'&&['movies','upcoming'].includes(k)||r==='Dulcería'&&k==='candy';
+export const allowed=(r,k)=>r==='Administrador'||r==='Programación'&&['movies','upcoming','presentation'].includes(k)||r==='Dulcería'&&k==='candy';

@@ -1,3 +1,14 @@
+const defaultPresentation={bannerEnabled:true,bannerImage:'https://cinema-ccu-display.diosdelcine.chatgpt.site/assets/ciclo-cuerpos.png',bannerAlt:'Cuerpos políticamente revolucionarios · 9 al 15 de noviembre de 2026',qrEnabled:true,qrImage:'https://cinema-ccu-display.diosdelcine.chatgpt.site/assets/facebook-qr.png',qrUrl:'https://www.facebook.com/salasdecinedearte/',qrLabel:'Síguenos en Facebook'};
+export function validatePresentation(p){
+ if(!p||typeof p!=='object')throw Error('Presentación inválida.');
+ for(const k of ['bannerImage','qrImage']){
+  const v=p[k];if(typeof v!=='string'||v.length>650000||!(v===''||/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(v)||v.startsWith('https://cinema-ccu-display.diosdelcine.chatgpt.site/assets/')))throw Error('Imagen inválida. Usa JPG, PNG o WebP.');
+ }
+ for(const k of ['bannerEnabled','qrEnabled'])if(typeof p[k]!=='boolean')throw Error('Visibilidad inválida.');
+ if(typeof p.bannerAlt!=='string'||p.bannerAlt.length>200||typeof p.qrLabel!=='string'||p.qrLabel.length>100)throw Error('Texto demasiado largo.');
+ if(p.qrUrl){try{if(new URL(p.qrUrl).protocol!=='https:')throw Error()}catch{throw Error('El enlace debe comenzar con https://');}}
+ return Object.fromEntries(Object.keys(defaultPresentation).map(k=>[k,p[k]]));
+}
 const roles=['Administrador','Programación','Dulcería','Consulta'];
 const tables=['movies','candy','upcoming'];
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
@@ -24,7 +35,7 @@ export async function api(req,env,seed){
  try{
   if(path==='/api/state'&&req.method==='GET'){
    const row=await env.DB.prepare('SELECT payload,revision FROM catalog WHERE id=1').first();
-   return json({data:row?JSON.parse(row.payload):seed,revision:row?.revision||0});
+   const db=row?JSON.parse(row.payload):seed;return json({data:{...db,presentation:db.presentation||defaultPresentation},revision:row?.revision||0});
   }
   const user=await identity(req,env);
   if(path==='/api/me'&&req.method==='GET'){
@@ -47,18 +58,20 @@ export async function api(req,env,seed){
    else await env.DB.prepare('INSERT INTO members(email,role,active) VALUES(?,?,?) ON CONFLICT(email) DO UPDATE SET role=excluded.role,active=excluded.active').bind(email,b.role,b.active?1:0).run();
    return json({ok:true});
   }
-  if(path!=='/api/record')return json({error:'Ruta no encontrada.'},404);
-  if(!tables.includes(b.table)||!can(user.role,b.table))return json({error:'No tienes permiso para esta sección.'},403);
+  if(!['/api/record','/api/presentation'].includes(path))return json({error:'Ruta no encontrada.'},404);
+  if(path==='/api/presentation'?!['Administrador','Programación'].includes(user.role):(!tables.includes(b.table)||!can(user.role,b.table)))return json({error:'No tienes permiso para esta sección.'},403);
   const old=await env.DB.prepare('SELECT payload,revision FROM catalog WHERE id=1').first();
   const revision=old?.revision||0;
   if(b.revision!==revision)return json({error:'Otra persona actualizó la cartelera. Cierra y vuelve a abrir Administrar antes de guardar.'},409);
   const db=old?JSON.parse(old.payload):structuredClone(seed),list=db[b.table];
+  if(path==='/api/presentation'){db.presentation=validatePresentation(b.presentation)}else{
   const row=b.row;
   if(!row||typeof row!=='object')throw Error('Ficha inválida.');
   const i=list.findIndex(r=>r.id===row.id);
   if(row.id&&i<0)throw Error('La ficha ya no existe.');
   if(b.remove){if(i<0)throw Error('Ficha inexistente.');list.splice(i,1)}
   else if(i>=0)list[i]=row;else list.push({...row,id:crypto.randomUUID()});
+  }
   validate(db);
   const result=old?await env.DB.prepare('UPDATE catalog SET payload=?,revision=revision+1 WHERE id=1 AND revision=?').bind(JSON.stringify(db),revision).run():await env.DB.prepare('INSERT OR IGNORE INTO catalog(id,payload,revision) VALUES(1,?,1)').bind(JSON.stringify(db)).run();
   if(result.meta.changes!==1)return json({error:'Otra persona guardó primero. Actualiza antes de volver a guardar.'},409);

@@ -20,3 +20,5 @@ export function init(){throw Error('Usa Iniciar sesión con ChatGPT.')}
 export function login(){location.href='/signin-with-chatgpt?return_to=%2F%3Fadmin%3D1'}
 export function pinChange(){throw Error('Tu acceso se administra en tu cuenta de ChatGPT.')}
 export function restore(){throw Error('La importación masiva no está habilitada. Tus 17 películas ya están cargadas.')}
+
+export async function savePresentation(presentation){const r=await api('/api/presentation',{presentation,revision});revision=r.revision;}

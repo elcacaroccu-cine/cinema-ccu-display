@@ -32,3 +32,18 @@ test('server protects writes, roles, origin, members and revocation',async()=>{
  assert.equal((await api(request('/api/members',{id:'owner@example.com',remove:true},'owner@example.com'),env,seed)).status,400);
  const publicState=await (await api(request('/api/state'),env,seed)).json();assert.equal(JSON.stringify(publicState).includes('owner@example.com'),false);
 });
+test('shared banner and QR survive movie edits; permission, validation and concurrent writes enforced',async()=>{
+ const env=environment();
+ const initial=await (await api(request('/api/state'),env,seed)).json();
+ const p={...initial.data.presentation,bannerAlt:'Ciclo actualizado',qrLabel:'Cinema CCU'};
+ assert.equal((await api(request('/api/presentation',{presentation:p,revision:0}),env,seed)).status,403);
+ assert.equal((await api(request('/api/presentation',{presentation:{...p,qrImage:'javascript:alert(1)'},revision:0},'owner@example.com'),env,seed)).status,400);
+ assert.equal((await api(request('/api/presentation',{presentation:p,revision:0},'owner@example.com'),env,seed)).status,200);
+ const screen=await (await api(request('/api/state'),env,seed)).json();assert.equal(screen.data.presentation.bannerAlt,'Ciclo actualizado');assert.equal(screen.data.movies.length,17);
+ assert.equal((await api(request('/api/presentation',{presentation:p,revision:0},'owner@example.com'),env,seed)).status,409);
+ assert.equal((await api(request('/api/record',{table:'movies',row:{...seed.movies[0],title:'Edición'},revision:1},'owner@example.com'),env,seed)).status,200);
+ const after=await (await api(request('/api/state'),env,seed)).json();assert.equal(after.data.presentation.qrLabel,'Cinema CCU');
+ await api(request('/api/members',{name:'program@example.com',role:'Programación',active:true},'owner@example.com'),env,seed);
+ assert.equal((await api(request('/api/presentation',{presentation:{...p,bannerEnabled:false},revision:2},'program@example.com'),env,seed)).status,200);
+ const hidden=await (await api(request('/api/state'),env,seed)).json();assert.equal(hidden.data.presentation.bannerEnabled,false);
+});

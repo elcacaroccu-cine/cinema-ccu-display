@@ -58,3 +58,17 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 #panel{color-scheme:dark}
 
 #panel a{color:#ffcf8c;text-decoration:underline}
+
+/* Editable shared information, contained within the layout rather than overlays. */
+#cycleBanner{flex:1;min-width:0;margin:0 22px;text-align:center}
+#cycleBanner img{display:block;width:100%;height:160px;object-fit:contain}
+#socialQr{margin-top:16px;padding-top:12px;border-top:1px solid #b1a594}
+#socialQr a,#socialQr>div{display:flex;align-items:center;justify-content:flex-end;gap:14px;color:#202020;text-decoration:none}
+#socialQr img{width:142px;height:142px;object-fit:contain;background:white;padding:6px;flex-shrink:0}
+#socialQr span{font-size:19px;font-weight:bold;max-width:140px}
+.presentationField{padding:14px;margin:14px 0;border:1px solid #777;border-radius:5px}
+.presentationPreview{display:block;max-width:100%;width:420px;height:180px;object-fit:contain;margin:10px 0;background:#fff}
+.qrPreview{width:160px;height:160px}.presentationPreview[src=""]{display:none}
+.tv .mast{align-items:center}.tv #cycleBanner img{height:160px}
+@media(max-width:650px){#cycleBanner{margin:16px 0}#cycleBanner img{height:auto;max-height:220px}#socialQr a,#socialQr>div{justify-content:center}}
+[hidden]{display:none!important}
