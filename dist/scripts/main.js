@@ -1,11 +1,11 @@
 import './text-scroll.js';
-import {renderPresentation} from './presentation.js';
-import {publishedData} from './published.js?v=fixed5';
-import './screen-fit.js?v=fixed5';
+import {renderPresentation} from './presentation.js?v=wide6';
+import {publishedData} from './published.js?v=wide6';
+import './screen-fit.js?v=wide6';
 import {data,cloud} from './store.js';
 import {esc,safeImage,dates,pretty,money,yt} from './util.js';
 import { expandScreenings, groupScreenings } from './screenings.js';
-import {admin} from './panel.js?v=fixed5';
+import {admin} from './panel.js?v=wide6';
 const $=s=>document.querySelector(s),days=['Hoy','Mañana','Tercer día'];
 let db={movies:[],candy:[],upcoming:[]},dateList=dates(),day=0,mi=0,ci=0,vi=0,paused=false,manual=0,mt=0,ct=0,vt=0,frame,ready=false,playing=false,pendingEnded=false;
 const empty=s=>'<p class="empty">'+s+'</p>';

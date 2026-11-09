@@ -1,4 +1,4 @@
-import {presentationForm,preparePresentationImage} from './presentation.js';
+import {presentationForm,preparePresentationImage} from './presentation.js?v=wide6';
 import * as S from './shared-store.js';
 import { scheduleFields, resizeSchedule, readSchedule, posterFields } from './movie-form.js';
 import { screeningsFor, validateScreenings } from './screenings.js';

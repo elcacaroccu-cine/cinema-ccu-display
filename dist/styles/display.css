@@ -101,3 +101,9 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 .tv #cycleBanner{max-width:720px}
 .tv #trailer .video{height:150px;aspect-ratio:auto}.tv #trailer .cardTitle{max-height:56px}
 .tv #trailer .description{max-height:27px;margin:6px 0}.tv #trailer .videoNote{max-height:24px;font-size:16px;overflow:hidden}
+
+/* Banner fills the gap between the title and agenda: 800 x 72 design pixels. */
+.tv .mast{display:grid;grid-template-columns:200px minmax(0,1fr) 216px;gap:8px}
+.tv .mast>div:first-child,.tv .mastDate{min-width:0}
+.tv #cycleBanner{width:100%;max-width:none;margin:0;height:72px}
+.tv .mastDate{grid-column:3}
