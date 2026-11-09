@@ -107,3 +107,5 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 .tv .mast>div:first-child,.tv .mastDate{min-width:0}
 .tv #cycleBanner{width:100%;max-width:none;margin:0;height:72px}
 .tv .mastDate{grid-column:3}
+
+.presentationActions{position:sticky;top:0;background:#202020;padding:12px;z-index:2;border-bottom:1px solid #888}.presentationStatus{margin:8px 0;font-size:16px}.presentationField button{display:block;margin-top:10px}

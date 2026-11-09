@@ -21,4 +21,4 @@ export function login(){location.href='/signin-with-chatgpt?return_to=%2F%3Fadmi
 export function pinChange(){throw Error('Tu acceso se administra en tu cuenta de ChatGPT.')}
 export function restore(){throw Error('La importación masiva no está habilitada. Tus 17 películas ya están cargadas.')}
 
-export async function savePresentation(presentation){const r=await api('/api/presentation',{presentation,revision});revision=r.revision;}
+export async function savePresentation(presentation){const r=await api('/api/presentation',{presentation,revision});revision=r.revision;const saved=await api('/api/state');if(Object.keys(presentation).some(k=>saved.data.presentation?.[k]!==presentation[k]))throw Error('La imagen no coincide con la publicación. Conservamos tu selección: vuelve a publicar.');revision=saved.revision;}

@@ -47,3 +47,18 @@ test('shared banner and QR survive movie edits; permission, validation and concu
  assert.equal((await api(request('/api/presentation',{presentation:{...p,bannerEnabled:false},revision:2},'program@example.com'),env,seed)).status,200);
  const hidden=await (await api(request('/api/state'),env,seed)).json();assert.equal(hidden.data.presentation.bannerEnabled,false);
 });
+test('remove uploaded banner stays empty after reload and a replacement is shared without changing QR or films',async()=>{
+ const env=environment();
+ const initial=await (await api(request('/api/state'),env,seed)).json();
+ const p={...initial.data.presentation,bannerImage:'data:image/png;base64,YWJj',bannerEnabled:true};
+ assert.equal((await api(request('/api/presentation',{presentation:p,revision:0},'owner@example.com'),env,seed)).status,200);
+ const removed={...p,bannerImage:'',bannerEnabled:false};
+ assert.equal((await api(request('/api/presentation',{presentation:removed,revision:1},'owner@example.com'),env,seed)).status,200);
+ const empty=await (await api(request('/api/state'),env,seed)).json();
+ assert.equal(empty.data.presentation.bannerImage,'');assert.equal(empty.data.presentation.bannerEnabled,false);
+ assert.equal(empty.data.presentation.qrImage,initial.data.presentation.qrImage);
+ const replacement={...removed,bannerImage:'data:image/jpeg;base64,ZGVm',bannerEnabled:true};
+ assert.equal((await api(request('/api/presentation',{presentation:replacement,revision:2},'owner@example.com'),env,seed)).status,200);
+ const screen=await (await api(request('/api/state'),env,seed)).json();
+ assert.deepEqual(screen.data.presentation,replacement);assert.deepEqual(screen.data.movies,seed.movies);
+});
