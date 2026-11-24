@@ -1,5 +1,5 @@
-import {presentationForm,preparePresentationImage} from './presentation.js?v=image7';
-import * as S from './shared-store.js?v=image7';
+import {presentationForm,preparePresentationImage} from './presentation.js?v=strip8';
+import * as S from './shared-store.js?v=strip8';
 import { scheduleFields, resizeSchedule, readSchedule, posterFields } from './movie-form.js';
 import { screeningsFor, validateScreenings } from './screenings.js';
 import { preparePoster, validatePosterFile } from './poster.js';

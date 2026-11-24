@@ -109,3 +109,10 @@ header,footer{border-color:#b1a594}section{border-color:#202020}
 .tv .mastDate{grid-column:3}
 
 .presentationActions{position:sticky;top:0;background:#202020;padding:12px;z-index:2;border-bottom:1px solid #888}.presentationStatus{margin:8px 0;font-size:16px}.presentationField button{display:block;margin-top:10px}
+
+/* Publication strip: full height between the header and section rules. */
+.tv .mast{height:88px;flex-basis:88px;padding:0;grid-template-columns:200px 800px 216px;column-gap:8px;border-bottom:2px solid #202020}
+.tv #cycleBanner{height:86px;align-self:stretch;display:flex;align-items:center}
+.tv #cycleBanner img{height:86px;max-height:86px;width:800px;object-fit:contain}
+.tv .mastDate{text-align:left}
+.tv .grid>section{border-top:0}
