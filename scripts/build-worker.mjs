@@ -4,7 +4,7 @@ const assets={};
 function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){if(['server','.openai'].includes(e.name))continue;const p=path.join(dir,e.name);if(e.isDirectory())walk(p);else assets['/'+p.slice(5)]={b:fs.readFileSync(p).toString('base64'),type:({'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.png':'image/png'})[path.extname(p)]||'application/octet-stream'}}}
 walk('dist');
 const seed=fs.readFileSync('dist/data/cartelera.json','utf8');
-const api=fs.readFileSync('worker/api.js','utf8').replaceAll('export ','');
+const api=fs.readFileSync('dist/scripts/event-youtube.js','utf8').replaceAll('export ','')+'\n'+fs.readFileSync('worker/api.js','utf8').replace(/^import .*;\n/,'').replaceAll('export ','');
 const code=api+'\nconst assets='+JSON.stringify(assets)+';\nconst seed='+seed+';\n'+`
 export default {async fetch(req,env){
  const url=new URL(req.url);

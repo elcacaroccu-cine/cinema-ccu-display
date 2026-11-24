@@ -77,3 +77,12 @@ test('special event persists across screens, survives edits and stops without lo
  const bad=await api(new Request(origin+'/api/event-upload',{method:'POST',headers:{...headers,'Content-Type':'text/html'},body:'no'}),env,seed);assert.equal(bad.status,415);
  const huge=await api(new Request(origin+'/api/event-upload',{method:'POST',headers:{...headers,'Content-Length':String(51*1024*1024)},body:'no'}),env,seed);assert.equal(huge.status,413);
 });
+test('YouTube event is shared, validates URLs, preserves catalog and stops',async()=>{
+ const env=environment(),youtubeUrl='https://youtu.be/M7lc1UVf-VE?si=test';
+ assert.equal((await api(request('/api/event',{active:true,source:'youtube',youtubeUrl,revision:0}),env,seed)).status,403);
+ assert.equal((await api(request('/api/event',{active:true,source:'youtube',youtubeUrl:'https://evil.example/watch?v=M7lc1UVf-VE',revision:0},'owner@example.com'),env,seed)).status,400);
+ assert.equal((await api(request('/api/event',{active:true,source:'youtube',youtubeUrl,revision:0},'owner@example.com'),env,seed)).status,200);
+ let state=await (await api(request('/api/state'),env,seed)).json();assert.equal(state.data.specialEvent.youtubeId,'M7lc1UVf-VE');assert.equal(state.data.specialEvent.source,'youtube');assert.deepEqual(state.data.movies,seed.movies);
+ assert.equal((await api(request('/api/event',{active:false,revision:1},'owner@example.com'),env,seed)).status,200);
+ state=await (await api(request('/api/state'),env,seed)).json();assert.equal(state.data.specialEvent.active,false);assert.equal(state.data.specialEvent.youtubeId,'M7lc1UVf-VE');
+});

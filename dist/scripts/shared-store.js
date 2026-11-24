@@ -1,3 +1,4 @@
+import {eventYoutubeId} from './event-youtube.js';
 export const cloud=false,shared=true,tables=['movies','candy','upcoming'];
 export const base='https://cinema-ccu-display.diosdelcine.chatgpt.site';
 let user=null,members=[],revision=0;
@@ -27,4 +28,4 @@ export async function uploadEvent(file){
  const r=await fetch(base+'/api/event-upload',{method:'POST',credentials:'same-origin',headers:{'Content-Type':file.type},body:file});
  const b=await r.json();if(!r.ok)throw Error(b.error||'No se pudo subir el archivo.');return b;
 }
-export async function saveEvent(event){const r=await api('/api/event',{...event,revision});revision=r.revision;const saved=await api('/api/state');if(saved.data.specialEvent?.active!==event.active||(event.active&&saved.data.specialEvent.key!==event.key))throw Error('No se pudo verificar el evento.');revision=saved.revision;}
+export async function saveEvent(event){const r=await api('/api/event',{...event,revision});revision=r.revision;const saved=await api('/api/state');if(saved.data.specialEvent?.active!==event.active||(event.active&&(event.source==='youtube'?saved.data.specialEvent.youtubeId!==eventYoutubeId(event.youtubeUrl):saved.data.specialEvent.key!==event.key)))throw Error('No se pudo verificar el evento.');revision=saved.revision;}

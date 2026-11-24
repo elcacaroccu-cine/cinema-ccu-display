@@ -1,12 +1,12 @@
-import {renderSpecialEvent,eventActive} from './special-event.js?v=event1';
+import {renderSpecialEvent,eventActive} from './special-event.js?v=event2';
 import './text-scroll.js';
-import {renderPresentation} from './presentation.js?v=event1';
-import {publishedData} from './published.js?v=event1';
-import './screen-fit.js?v=event1';
+import {renderPresentation} from './presentation.js?v=event2';
+import {publishedData} from './published.js?v=event2';
+import './screen-fit.js?v=event2';
 import {data,cloud} from './store.js';
 import {esc,safeImage,dates,pretty,money,yt} from './util.js';
 import { expandScreenings, groupScreenings } from './screenings.js';
-import {admin} from './panel.js?v=event1';
+import {admin} from './panel.js?v=event2';
 const $=s=>document.querySelector(s),days=['Hoy','Mañana','Tercer día'];
 let db={movies:[],candy:[],upcoming:[]},dateList=dates(),day=0,mi=0,ci=0,vi=0,paused=false,manual=0,mt=0,ct=0,vt=0,frame,ready=false,playing=false,pendingEnded=false;
 const empty=s=>'<p class="empty">'+s+'</p>';

@@ -1,3 +1,4 @@
+import {eventYoutubeId} from '../dist/scripts/event-youtube.js';
 const defaultPresentation={bannerEnabled:true,bannerImage:'https://cinema-ccu-display.diosdelcine.chatgpt.site/assets/ciclo-cuerpos.png',bannerAlt:'Cuerpos políticamente revolucionarios · 9 al 15 de noviembre de 2026',qrEnabled:true,qrImage:'https://cinema-ccu-display.diosdelcine.chatgpt.site/assets/facebook-qr.png',qrUrl:'https://www.facebook.com/salasdecinedearte/',qrLabel:'Síguenos en Facebook'};
 export function validatePresentation(p){
  if(!p||typeof p!=='object')throw Error('Presentación inválida.');
@@ -89,7 +90,10 @@ export async function api(req,env,seed){
   const db=old?JSON.parse(old.payload):structuredClone(seed),list=db[b.table];
   if(path==='/api/event'){
    if(typeof b.active!=='boolean')throw Error('Estado inválido.');
-   if(b.active){
+   if(b.active&&b.source==='youtube'){
+    const id=eventYoutubeId(b.youtubeUrl);if(!id)throw Error('Pega un enlace válido a un video de YouTube.');
+    db.specialEvent={active:true,source:'youtube',youtubeId:id,youtubeUrl:'https://www.youtube.com/watch?v='+id,title:String(b.title||'Evento especial').slice(0,120)};
+   }else if(b.active){
     if(!/^[a-f0-9-]{36}$/.test(b.key||''))throw Error('Primero sube un archivo.');
     const media=await env.BUCKET.head('events/'+b.key);if(!media)throw Error('El archivo no existe.');
     db.specialEvent={active:true,key:b.key,type:media.httpMetadata.contentType,title:String(b.title||'Evento especial').slice(0,120)};
