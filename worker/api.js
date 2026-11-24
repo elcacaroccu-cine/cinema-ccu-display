@@ -37,6 +37,16 @@ export async function api(req,env,seed){
    const row=await env.DB.prepare('SELECT payload,revision FROM catalog WHERE id=1').first();
    const db=row?JSON.parse(row.payload):seed;return json({data:{...db,presentation:db.presentation||defaultPresentation},revision:row?.revision||0});
   }
+  if(path.startsWith('/api/event-media/')&&['GET','HEAD'].includes(req.method)){
+   const key=path.slice('/api/event-media/'.length);
+   if(!/^[a-f0-9-]{36}$/.test(key))return json({error:'Archivo inválido.'},404);
+   const object=await env.BUCKET.get('events/'+key,{range:req.headers});
+   if(!object)return json({error:'Archivo no encontrado.'},404);
+   const headers=new Headers({'Content-Type':object.httpMetadata.contentType,'Cache-Control':'public, max-age=31536000, immutable','Accept-Ranges':'bytes','Access-Control-Allow-Origin':'*','X-Content-Type-Options':'nosniff'});
+   const range=object.range;let status=200;
+   if(range){const offset=range.offset??Math.max(0,object.size-range.suffix),length=range.length??object.size-offset;headers.set('Content-Range',`bytes ${offset}-${offset+length-1}/${object.size}`);headers.set('Content-Length',String(length));status=206}else headers.set('Content-Length',String(object.size));
+   return new Response(req.method==='HEAD'?null:object.body,{status,headers});
+  }
   const user=await identity(req,env);
   if(path==='/api/me'&&req.method==='GET'){
    const members=user?.role==='Administrador'?(await env.DB.prepare('SELECT email,role,active FROM members').all()).results.map(m=>({id:m.email,name:m.email,role:m.role,active:!!m.active})):[];
@@ -45,6 +55,19 @@ export async function api(req,env,seed){
   if(!user)return json({error:'Inicia sesión con una cuenta autorizada.'},403);
   if(req.method!=='POST')return json({error:'Método no permitido.'},405);
   if(req.headers.get('Origin')!==new URL(req.url).origin)return json({error:'Origen no autorizado.'},403);
+  if(path==='/api/event-upload'){
+   if(user.role!=='Administrador')return json({error:'Solo administradores.'},403);
+   const type=req.headers.get('Content-Type'),limit=50*1024*1024;
+   if(!['image/jpeg','image/png','image/webp','video/mp4','video/webm'].includes(type))return json({error:'Usa JPG, PNG, WebP, MP4 o WebM.'},415);
+   if(Number(req.headers.get('Content-Length'))>limit)return json({error:'Máximo 50 MB.'},413);
+   if(!req.body)return json({error:'Archivo vacío.'},400);
+   const key=crypto.randomUUID();let size=0;
+   const stream=req.body.pipeThrough(new TransformStream({transform(chunk,controller){size+=chunk.byteLength;if(size>limit)throw Error('Máximo 50 MB.');controller.enqueue(chunk)}}));
+   const bytes=await new Response(stream).arrayBuffer();
+   if(!bytes.byteLength)return json({error:'Archivo vacío.'},400);
+   await env.BUCKET.put('events/'+key,bytes,{httpMetadata:{contentType:type}});
+   return json({key,type});
+  }
   if(!req.headers.get('Content-Type')?.includes('application/json'))return json({error:'Formato no permitido.'},415);
   const text=await req.text();if(text.length>12000000)return json({error:'El contenido excede 12 MB.'},413);
   const b=JSON.parse(text);
@@ -58,13 +81,20 @@ export async function api(req,env,seed){
    else await env.DB.prepare('INSERT INTO members(email,role,active) VALUES(?,?,?) ON CONFLICT(email) DO UPDATE SET role=excluded.role,active=excluded.active').bind(email,b.role,b.active?1:0).run();
    return json({ok:true});
   }
-  if(!['/api/record','/api/presentation'].includes(path))return json({error:'Ruta no encontrada.'},404);
-  if(path==='/api/presentation'?!['Administrador','Programación'].includes(user.role):(!tables.includes(b.table)||!can(user.role,b.table)))return json({error:'No tienes permiso para esta sección.'},403);
+  if(!['/api/record','/api/presentation','/api/event'].includes(path))return json({error:'Ruta no encontrada.'},404);
+  if(path==='/api/event'?user.role!=='Administrador':path==='/api/presentation'?!['Administrador','Programación'].includes(user.role):(!tables.includes(b.table)||!can(user.role,b.table)))return json({error:'No tienes permiso para esta sección.'},403);
   const old=await env.DB.prepare('SELECT payload,revision FROM catalog WHERE id=1').first();
   const revision=old?.revision||0;
   if(b.revision!==revision)return json({error:'Otra persona actualizó la cartelera. Cierra y vuelve a abrir Administrar antes de guardar.'},409);
   const db=old?JSON.parse(old.payload):structuredClone(seed),list=db[b.table];
-  if(path==='/api/presentation'){db.presentation=validatePresentation(b.presentation)}else{
+  if(path==='/api/event'){
+   if(typeof b.active!=='boolean')throw Error('Estado inválido.');
+   if(b.active){
+    if(!/^[a-f0-9-]{36}$/.test(b.key||''))throw Error('Primero sube un archivo.');
+    const media=await env.BUCKET.head('events/'+b.key);if(!media)throw Error('El archivo no existe.');
+    db.specialEvent={active:true,key:b.key,type:media.httpMetadata.contentType,title:String(b.title||'Evento especial').slice(0,120)};
+   }else db.specialEvent={...(db.specialEvent||{}),active:false};
+  }else if(path==='/api/presentation'){db.presentation=validatePresentation(b.presentation)}else{
   const row=b.row;
   if(!row||typeof row!=='object')throw Error('Ficha inválida.');
   const i=list.findIndex(r=>r.id===row.id);

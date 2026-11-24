@@ -62,3 +62,18 @@ test('remove uploaded banner stays empty after reload and a replacement is share
  const screen=await (await api(request('/api/state'),env,seed)).json();
  assert.deepEqual(screen.data.presentation,replacement);assert.deepEqual(screen.data.movies,seed.movies);
 });
+test('special event persists across screens, survives edits and stops without losing catalog',async()=>{
+ const env=environment(),objects=new Map();env.BUCKET={async head(k){return objects.get(k)},async put(k,body,options){objects.set(k,{httpMetadata:options.httpMetadata})}};
+ const headers={'Origin':origin,'Content-Type':'video/mp4','oai-authenticated-user-id':'owner','oai-authenticated-user-email':'owner@example.com'};
+ const upload=await api(new Request(origin+'/api/event-upload',{method:'POST',headers,body:new Uint8Array([0,0,0,24,102,116,121,112,105,115,111,109])}),env,seed);
+ assert.equal(upload.status,200);const {key}=await upload.json();
+ assert.equal((await api(request('/api/event',{active:true,key,revision:0}),env,seed)).status,403);
+ assert.equal((await api(request('/api/event',{active:true,key:'missing',revision:0},'owner@example.com'),env,seed)).status,400);
+ assert.equal((await api(request('/api/event',{active:true,key,title:'Conferencia',revision:0},'owner@example.com'),env,seed)).status,200);
+ let state=await (await api(request('/api/state'),env,seed)).json();assert.equal(state.data.specialEvent.active,true);assert.equal(state.data.specialEvent.type,'video/mp4');assert.deepEqual(state.data.movies,seed.movies);
+ assert.equal((await api(request('/api/event',{active:false,revision:0},'owner@example.com'),env,seed)).status,409);
+ assert.equal((await api(request('/api/event',{active:false,revision:1},'owner@example.com'),env,seed)).status,200);
+ state=await (await api(request('/api/state'),env,seed)).json();assert.equal(state.data.specialEvent.active,false);assert.deepEqual(state.data.movies,seed.movies);
+ const bad=await api(new Request(origin+'/api/event-upload',{method:'POST',headers:{...headers,'Content-Type':'text/html'},body:'no'}),env,seed);assert.equal(bad.status,415);
+ const huge=await api(new Request(origin+'/api/event-upload',{method:'POST',headers:{...headers,'Content-Length':String(51*1024*1024)},body:'no'}),env,seed);assert.equal(huge.status,413);
+});

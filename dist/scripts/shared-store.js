@@ -22,3 +22,9 @@ export function pinChange(){throw Error('Tu acceso se administra en tu cuenta de
 export function restore(){throw Error('La importación masiva no está habilitada. Tus 17 películas ya están cargadas.')}
 
 export async function savePresentation(presentation){const r=await api('/api/presentation',{presentation,revision});revision=r.revision;const saved=await api('/api/state');if(Object.keys(presentation).some(k=>saved.data.presentation?.[k]!==presentation[k]))throw Error('La imagen no coincide con la publicación. Conservamos tu selección: vuelve a publicar.');revision=saved.revision;}
+
+export async function uploadEvent(file){
+ const r=await fetch(base+'/api/event-upload',{method:'POST',credentials:'same-origin',headers:{'Content-Type':file.type},body:file});
+ const b=await r.json();if(!r.ok)throw Error(b.error||'No se pudo subir el archivo.');return b;
+}
+export async function saveEvent(event){const r=await api('/api/event',{...event,revision});revision=r.revision;const saved=await api('/api/state');if(saved.data.specialEvent?.active!==event.active||(event.active&&saved.data.specialEvent.key!==event.key))throw Error('No se pudo verificar el evento.');revision=saved.revision;}
